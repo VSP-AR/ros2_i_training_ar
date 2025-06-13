@@ -105,7 +105,7 @@ Use `PathJoinSubstitution` to build the path to the `cartesian_urdf.xacro` file 
 
 ```bash
     urdf_path = PathJoinSubstitution([
-        FindPackageShare('cartesian_robot'),
+        FindPackageShare('cartesian_robot_description'),
         'urdf',
         'cartesian_urdf.xacro'
     ])
@@ -176,7 +176,7 @@ Finally, all defined nodes and actions are put together as part of the launch de
     ])
 ```
 
-The complete launch file can be found here: [Cartesian_display.launch.py](https://github.com/VSP-AR/urdf_tutorials/blob/main/cartesian_robot/launch/cartesian_display.launch.py).
+The complete launch file can be found here: [cartesian_robot_view.launch.py](https://gitlab.cc-asp.fraunhofer.de/ipa326/ros_training_workspaces/cartesian_robot_tutorial/-/blob/main/cartesian_robot_description/launch/cartesian_robot_view.launch.py?ref_type=heads).
 
 
 ### 4. Build the package
@@ -233,17 +233,20 @@ These materials will help to visualise the robot parts in RViz.
 
 ```python
 <xacro:property name="z_offset" value="1.0" />
-<xacro:property name="l1" value="4.0" />
-<xacro:property name="l2" value="2.4" />
-<xacro:property name="l3" value="0.8" />
-<xacro:property name="l4" value="0.2" />
-<xacro:property name="width" value="0.2" />
+  <xacro:property name="l1" value="4.0" />
+  <xacro:property name="l2" value="2.4" />
+  <xacro:property name="l3" value="0.8" />
+  <xacro:property name="l4" value="0.2" />
+  <xacro:property name="width" value="0.2" />
+  <xacro:property name="holder_offset" value="${z_offset + 0.5}"/>
+
 ```
 
 These values define:
 - A z-offset to lift the robot off the ground.
 - Link Lenghts (l1,l2,l3..).
 - width parameter to set a varying width of link if required.
+- holder_offset to make the cartesian robot fixed to ground in gazebo.
 
 These parameters can be modified as required and also they make the model reconfigurable.
 
@@ -328,7 +331,7 @@ Prismatic Joint Example:
 ```
 This joint allows linear motion in the x-direction.
 
-Similarly other joints can be defined. Complete urdf can be found here [Cartesian_urdf.xacro](https://github.com/VSP-AR/urdf_tutorials/blob/main/cartesian_robot/urdf/cartesian_urdf.xacro).
+Similarly other joints can be defined. Complete urdf can be found here [cartesian_urdf.xacro](https://gitlab.cc-asp.fraunhofer.de/ipa326/ros_training_workspaces/cartesian_robot_tutorial/-/blob/main/cartesian_robot_description/urdf/cartesian_urdf.xacro?ref_type=heads).
 
 #### Step 7: Close the Robot tag
 
@@ -347,9 +350,8 @@ source ~/urdf_tutorials/install/setup.bash
 After completing all the above steps, Run your launch file to start the robot_state_publisher and open RViz2:
 
 ```bash
-ros2 launch urdf_tutorials cartesian_display.launch.py
+ros2 launch cartesian_robot_description cartesian_robot_view.launch.py
 ```
-
 
 ![LINk](../../_source/urdf/cartesian_screen.jpg)
 
