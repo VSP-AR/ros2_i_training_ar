@@ -35,8 +35,8 @@ mkdir urdf_tutorials/src
 then create the package
 ```bash 
 cd urdf_tutorials/src
-ros2 pkg create cartesian_robot --build-type ament_cmake 
-cd cartesian_robot
+ros2 pkg create cartesian_robot_description --build-type ament_cmake 
+cd cartesian_robot_description
 ```
 
 ### 2. Update `CMakeLists.txt` and `package.xml`
@@ -66,7 +66,7 @@ In `package.xml`, make sure you declare dependencies on:
 
 #### Step 1: Creating the launch file.
 
-Inside the package `cartesian_robot` create the `launch`folder to keep the launch file.
+Inside the package `cartesian_robot_description` create the `launch`folder to keep the launch file.
 
 
 ```bash
@@ -74,7 +74,7 @@ mkdir launch
 cd launch
 ```
 
-Inside the `launch` folder now create the file `cartesian_display.launch.py`.
+Inside the `launch` folder now create the file `cartesian_robot_view.launch.py`.
 
 #### Step 2: Add the Required Modules.
 
